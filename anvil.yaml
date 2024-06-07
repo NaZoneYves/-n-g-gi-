@@ -1,0 +1,80 @@
+correct_dependency_ids: {}
+dependencies: []
+services:
+- source: /runtime/services/tables.yml
+  client_config: {}
+  server_config: {}
+- source: /runtime/services/anvil/users.yml
+  client_config: {allow_signup: true, enable_automatically: true, use_email: true,
+    confirm_email: false}
+  server_config: {user_table: users}
+startup: {type: form, module: Homepage}
+package_name: News_App
+allow_embedding: false
+name: Clone of Multi-User News App (3)
+runtime_options: {version: 2, client_version: '3', server_version: python3-full, server_spec: null}
+startup_form: null
+db_schema:
+  articles:
+    title: Articles
+    client: search
+    server: full
+    columns:
+    - name: title
+      admin_ui: {width: 200}
+      type: string
+    - name: content
+      admin_ui: {width: 200}
+      type: string
+    - name: image
+      admin_ui: {width: 200}
+      type: media
+    - name: created
+      admin_ui: {width: 200}
+      type: datetime
+    - name: updated
+      admin_ui: {width: 200}
+      type: datetime
+    - name: category
+      admin_ui: {width: 200}
+      type: link_single
+      target: categories
+    - name: user
+      admin_ui: {width: 200}
+      type: link_single
+      target: users
+  categories:
+    title: Categories
+    client: search
+    server: full
+    columns:
+    - name: name
+      admin_ui: {width: 200}
+      type: string
+  users:
+    title: Users
+    client: none
+    server: full
+    columns:
+    - name: email
+      admin_ui: {width: 200}
+      type: string
+    - name: enabled
+      admin_ui: {width: 200}
+      type: bool
+    - name: last_login
+      admin_ui: {width: 200}
+      type: datetime
+    - name: password_hash
+      admin_ui: {width: 200}
+      type: string
+    - name: n_password_failures
+      admin_ui: {width: 200}
+      type: number
+    - name: confirmed_email
+      admin_ui: {width: 200}
+      type: bool
+    - name: signed_up
+      admin_ui: {width: 200}
+      type: datetime
+renamed: true
